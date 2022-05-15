@@ -1,0 +1,14 @@
+nav {
+  background: aliceblue;
+}
+
+nav > div {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+nav > div > div {
+  width: 6em;
+  height: 2em;
+  margin: 0.2em;
+}
