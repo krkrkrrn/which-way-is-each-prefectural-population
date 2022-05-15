@@ -11,11 +11,15 @@ export async function getPrefectures() {
   })
     .then((res) => {
       if (!res.ok) {
+        console.error(res.status)
+        console.warn(res.statusText)
         throw new Error(res.statusText)
       }
       return res.json()
     })
     .then((json) => {
+      console.log('prefectures res')
+      console.log(json)
       return Object.fromEntries(
         json.result.map((obj) => [obj.prefCode, obj.prefName])
       )
@@ -39,11 +43,15 @@ export async function getPopulation(prefCode = '13', cityCode = '-') {
   })
     .then((res) => {
       if (!res.ok) {
+        console.error(res.status)
+        console.warn(res.statusText)
         throw new Error(res.statusText)
       }
       return res.json()
     })
     .then((json) => {
+      console.log('populations res')
+      console.log(json)
       return json.result.data[0].data.map((obj) => {
         return { year: Number(obj['year']), value: Number(obj['value']) }
       })

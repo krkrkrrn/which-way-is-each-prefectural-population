@@ -16,7 +16,7 @@ const Nav = () => {
         console.log(res)
       })
       .catch((error) => {
-        console.error(error)
+        console.warn(error)
       })
   }, [])
 
@@ -35,12 +35,23 @@ const checkboxItems = (prefectures) => {
   const items = keys.map((key) => (
     <div>
       <label>
-        <input type="checkbox" value={key} />
+        <input
+          type="checkbox"
+          name={key}
+          value={prefectures[key]}
+          onClick={onClick}
+        />
         {prefectures[key]}
       </label>
     </div>
   ))
   return <div>{items}</div>
+}
+
+const onClick = (event) => {
+  console.log(event.target.name)
+  console.log(event.target.value)
+  console.log(event.target.checked)
 }
 
 export default Nav
