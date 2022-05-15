@@ -3,6 +3,10 @@ import Nav from './components/Nav'
 import logo from './logo.svg'
 import './App.css'
 
+/**
+ * ページ本体の出力
+ * @returns {JSX} ページ本体のDOM
+ */
 function App() {
   return (
     <div className="App">

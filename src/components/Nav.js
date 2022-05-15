@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { getPrefectures } from './Api.js'
 import './Nav.css'
 
+/**
+ * 都道府県を選択するナビゲーションを出力
+ * @returns {JSX} nav以下のDOM
+ */
 const Nav = () => {
   // RESAS API から都道府県コードと都道府県別人口を取得
   const [prefectures, setState] = useState({})
