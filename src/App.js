@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getPrefectures } from './Api.js'
 import logo from './logo.svg'
 import './App.css'
 
 function App() {
+  // RESAS API から都道府県コードと都道府県別人口を取得
+  const [population, setState] = useState({})
+  useEffect(() => {
+    getPrefectures()
+      .then((res) => {
+        setState(res)
+        console.log(res)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,9 +32,6 @@ function App() {
         >
           Learn React
         </a>
-        <p>
-          REACT_APP_RESAS_API_KEY is "{process.env.REACT_APP_RESAS_API_KEY}"
-        </p>
       </header>
     </div>
   )
