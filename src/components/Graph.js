@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getPopulation, getPrefectures } from './Api'
-import { LineChart, Line, XAxis, CartesianGrid } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts'
 
 /**
  * 年別人口推移のグラフを出力
@@ -15,8 +15,6 @@ const Graph = () => {
       const prefCodes = Object.keys(res)
       Promise.all(prefCodes.map((code) => getPopulation(code, res[code])))
         .then((res) => {
-          console.log('promise.all finished')
-          console.log(res)
           const population = {}
           const prefNames = new Set()
           for (const each_res of res) {
@@ -38,10 +36,6 @@ const Graph = () => {
           const data = years.map((year) =>
             Object.assign(population[year], { year: year })
           )
-          console.log('names')
-          console.log(names)
-          console.log('data')
-          console.log(data)
           setState({ names: names, data: data })
         })
         .catch((error) => {
@@ -53,15 +47,28 @@ const Graph = () => {
   return (
     <main>
       <LineChart
-        width={window.innerWidth}
+        width={Math.floor(window.innerWidth * 0.8)}
         height={Math.floor(window.innerWidth / 2)}
         data={populations.data}
+        style={{ margin: '0 auto' }}
       >
-        <XAxis dataKey="year" />
+        <XAxis
+          dataKey="year"
+          label={{ value: '年度', offset: -5, position: 'insideBottomRight' }}
+        />
+        <YAxis
+          label={{ value: '人口', offset: -20, position: 'insideTopLeft' }}
+        />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         {populations.names
           ? populations.names.map((name) => (
-              <Line type="monotone" id={name} dataKey={name} stroke="#8884d8" />
+              <Line
+                type="monotone"
+                id={name}
+                className="display_none"
+                dataKey={name}
+                stroke="#8884d8"
+              />
             ))
           : ''}
       </LineChart>

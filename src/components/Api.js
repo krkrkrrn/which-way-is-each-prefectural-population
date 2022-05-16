@@ -18,8 +18,6 @@ export async function getPrefectures() {
       return res.json()
     })
     .then((json) => {
-      console.log('prefectures res')
-      console.log(json)
       return Object.fromEntries(
         json.result.map((obj) => [obj.prefCode, obj.prefName])
       )
@@ -27,10 +25,11 @@ export async function getPrefectures() {
 }
 
 /**
- *
+ * 都道府県別人口の取得
  * @param {string} [prefCode='13'] 1-47の都道府県を示す番号(default: 東京)
+ * @param {string} [prefName='東京都'] 都道府県名
  * @param {string} [cityCode='-'] 市を示す番号(default: 全ての市)
- * @returns {Object<string, string>} 年別総人口。
+ * @returns {Object<*>} names: 都道府県のリスト、data: rechartsjsに渡す表データ
  */
 export async function getPopulation(
   prefCode = '13',
@@ -54,8 +53,6 @@ export async function getPopulation(
       return res.json()
     })
     .then((json) => {
-      console.log('populations res')
-      console.log(json)
       return {
         code: prefCode,
         name: prefName,

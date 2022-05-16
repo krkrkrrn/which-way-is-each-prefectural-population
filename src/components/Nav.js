@@ -28,6 +28,11 @@ const Nav = () => {
   )
 }
 
+/**
+ * 都道府県のリストからチェックボックスを出力する
+ * @param {Object<string, string>} prefectures 都道府県コード: 都道府県名
+ * @returns {JSX} チェックボックスのリスト
+ */
 const checkboxItems = (prefectures) => {
   const keys = Object.keys(prefectures)
   keys.sort((a, b) => Number(a) - Number(b))
@@ -48,10 +53,21 @@ const checkboxItems = (prefectures) => {
   return <div>{items}</div>
 }
 
+/**
+ * 都道府県毎のグラフの表示を切り替える
+ * @param {*} event clickイベント
+ */
 const onClick = (event) => {
-  console.log(event.target.name)
-  console.log(event.target.value)
-  console.log(event.target.checked)
+  const id = event.target.value
+  const checked = event.target.checked
+  const graphLine = document.getElementById(id)
+  if (graphLine) {
+    if (checked) {
+      graphLine.parentNode.classList.remove('display_none')
+    } else {
+      graphLine.parentNode.classList.add('display_none')
+    }
+  }
 }
 
 export default Nav
