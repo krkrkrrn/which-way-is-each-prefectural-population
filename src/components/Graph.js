@@ -50,23 +50,8 @@ const Graph = () => {
     })
   }, [])
 
-  const lines = () => {
-    console.log('run render')
-    if (typeof populations.names === 'Array') {
-      return populations.names.map((name) => (
-        // <Line type="monotone" id={name} dataKey={name} stroke="#8884d8" />
-        <div>{name}</div>
-      ))
-    } else {
-      return <div>{populations.names}</div>
-    }
-  }
-
   return (
     <main>
-      {populations.names
-        ? populations.names.map((name) => <div>{name}</div>)
-        : ''}
       <LineChart
         width={window.innerWidth}
         height={Math.floor(window.innerWidth / 2)}
@@ -74,6 +59,11 @@ const Graph = () => {
       >
         <XAxis dataKey="year" />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+        {populations.names
+          ? populations.names.map((name) => (
+              <Line type="monotone" id={name} dataKey={name} stroke="#8884d8" />
+            ))
+          : ''}
       </LineChart>
     </main>
   )
