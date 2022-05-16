@@ -32,7 +32,11 @@ export async function getPrefectures() {
  * @param {string} [cityCode='-'] 市を示す番号(default: 全ての市)
  * @returns {Object<string, string>} 年別総人口。
  */
-export async function getPopulation(prefCode = '13', cityCode = '-') {
+export async function getPopulation(
+  prefCode = '13',
+  prefName = '東京都',
+  cityCode = '-'
+) {
   const API_KEY = process.env.REACT_APP_RESAS_API_KEY
   const URL =
     'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear'
@@ -52,8 +56,12 @@ export async function getPopulation(prefCode = '13', cityCode = '-') {
     .then((json) => {
       console.log('populations res')
       console.log(json)
-      return json.result.data[0].data.map((obj) => {
-        return { year: Number(obj['year']), value: Number(obj['value']) }
-      })
+      return {
+        code: prefCode,
+        name: prefName,
+        data: json.result.data[0].data.map((obj) => {
+          return { year: Number(obj['year']), value: Number(obj['value']) }
+        }),
+      }
     })
 }
