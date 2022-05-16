@@ -3,8 +3,7 @@
 
 ## 概要 Overview
 
-[公開ページ](which-way-is-each-prefectural-population
-都道府県別人口推移)
+[公開ページ](https://krkrkrrn.github.io/which-way-is-each-prefectural-population/)
 
 都道府県ごとの人口推移が確認できます。
 
