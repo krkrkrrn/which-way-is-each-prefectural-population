@@ -20,6 +20,11 @@
 - 内閣府の [RESAS API](https://resas.go.jp/#/13/13101) を利用しています。
 - インターネット接続環境によっては、表示が遅くなることがあります。
 
+## 注意点 Notes
+Dependabotによる脆弱性の警告が表示されていますが、npm audit の誤りですので問題ありません。
+
+[Help, npm audit says I have a vulnerability in react-scripts!](https://github.com/facebook/create-react-app/issues/11174)
+
 ## 作者 Author
 
 [@krkrkrrn__3](https://twitter.com/krkrkrrn__3)
